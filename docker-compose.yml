@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./:/app/
+    working_dir: /app/
+    ports:
+      - $MYSQL_TCP_PORT:3306
+    environment: &environment
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    command:
+      - --character-set-server=utf8
+
+  php:
+    image: ngyuki/php-dev:7.0
+    volumes:
+      - ./:/app/
+    working_dir: /app/
+    stop_signal: KILL
+    environment:
+      <<: *environment
+    command:
+      - sh
+      - -c
+      - |
+        composer install -o --ansi --prefer-dist
+        php -v
+        echo
+        tail -f /dev/null

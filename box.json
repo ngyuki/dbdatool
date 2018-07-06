@@ -1,0 +1,39 @@
+{
+  "directories": [
+    "src"
+  ],
+  "files": [
+    "vendor/autoload.php"
+  ],
+  "finder": [
+    {
+      "in": [
+        "vendor/composer",
+        "vendor/psr/log",
+        "vendor/symfony/console",
+        "vendor/symfony/debug",
+        "vendor/symfony/polyfill-mbstring"
+      ],
+      "exclude": [
+        "tests",
+        "Tests"
+      ],
+      "notName": [
+        "*.md",
+        "LICENSE",
+        "composer.json"
+      ]
+    }
+  ],
+  "main": "bin/dbdatool",
+  "output": "dbdatool.phar",
+  "chmod": "0755",
+  "stub": true,
+  "git-commit": "git-commit",
+  "git-version": "git-version",
+  "datetime": "datetime",
+  "compression": "GZ",
+  "compactors": [
+    "Herrera\\Box\\Compactor\\Php"
+  ]
+}

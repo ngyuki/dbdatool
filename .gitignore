@@ -1,0 +1,7 @@
+/vendor
+/phpunit.xml
+/build
+/.php_cs.cache
+/.env
+/.envrc
+/dbdatool.phar

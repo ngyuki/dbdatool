@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+$loader = null;
+
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $fn) {
+    if (file_exists($fn)) {
+        /** @noinspection PhpIncludeInspection */
+        $loader = require $fn;
+    }
+}
+
+if ($loader === null) {
+    echo 'You must set up the project dependencies, run the following commands:' . PHP_EOL .
+        'curl -sS https://getcomposer.org/installer | php' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL;
+    exit(1);
+}
+
+use ngyuki\DbdaTool\Console\Application;
+
+$application = new Application();
+$application->run();

@@ -1,0 +1,51 @@
+{
+    "t": {
+        "columns": {
+            "id1": {
+                "default": null,
+                "nullable": false,
+                "type": "int(11)",
+                "charset": null,
+                "collation": null,
+                "autoIncrement": true,
+                "comment": ""
+            },
+            "id2": {
+                "default": null,
+                "nullable": false,
+                "type": "int(11)",
+                "charset": null,
+                "collation": null,
+                "autoIncrement": false,
+                "comment": ""
+            },
+            "str": {
+                "default": null,
+                "nullable": true,
+                "type": "text",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "autoIncrement": false,
+                "comment": ""
+            }
+        },
+        "indexes": {
+            "PRIMARY": {
+                "type": "PRIMARY",
+                "columns": [
+                    "id1",
+                    "id2"
+                ],
+                "comment": ""
+            }
+        },
+        "foreignKeys": [],
+        "options": {
+            "engine": "InnoDB",
+            "row_format": "Dynamic",
+            "charset": "utf8",
+            "collation": "utf8_general_ci",
+            "comment": ""
+        }
+    }
+}
