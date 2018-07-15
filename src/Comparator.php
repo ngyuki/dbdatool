@@ -151,7 +151,7 @@ class Comparator
         return $changes ? $tableDiff : null;
     }
 
-    private function moveLinkedList(array $list, string $name, string $newAfter): array
+    private function moveLinkedList(array $list, $name, $newAfter): array
     {
         foreach ($list as $before => $after) {
             if ($after === $name) {
