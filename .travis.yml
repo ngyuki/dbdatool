@@ -31,3 +31,15 @@ install:
 script:
   - phpunit --version
   - phpunit --colors --coverage-text
+
+before_deploy:
+  - composer build
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: dbdatool.phar
+  skip_cleanup: true
+  on:
+    php: 7.2
+    tags: true
