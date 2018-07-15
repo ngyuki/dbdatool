@@ -61,6 +61,7 @@ Arguments:
 Options:
   -c, --config[=CONFIG]                Config filename.
       --ignore-tables[=IGNORE-TABLES]  Ignore table regex patterns. (multiple values allowed)
+  -o, --output=OUTPUT                  Output filename
   ...snip...
 ```
 
