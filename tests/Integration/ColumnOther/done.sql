@@ -1,0 +1,5 @@
+CREATE TABLE t (
+  c2 INT NOT NULL,
+  c3 INT NOT NULL,
+  c1 INT NOT NULL
+);
