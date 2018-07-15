@@ -41,26 +41,35 @@ class DataSourceFactory
     {
         $pdo = $config['pdo'] ?? null;
         if ($pdo) {
-            return new static($pdo);
+            return new ConnectionSource($pdo);
         }
 
-        $dsn = $config['dsn'];
+        $dsn = $config['dsn'] ?? null;
+        if ($dsn === null) {
+            throw new \RuntimeException("Need specify 'dsn' or 'pdo' in config file.");
+        }
+
         $username = $config['username'] ?? null;
         $password = $config['password'] ?? null;
 
-        return new ConnectionSource(new PDO($dsn, $username, $password, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]));
+        return new ConnectionSource(self::createPdo($dsn, $username, $password));
     }
 
     public static function createByDsn(string $dsn)
     {
         list ($driver, $param, $username, $password) = explode(':', $dsn, 4) + [null, null, null, null];
+        return new ConnectionSource(self::createPdo("$driver:$param", $username, $password));
+    }
 
-        return new ConnectionSource(new PDO("$driver:$param", $username, $password, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]));
+    private static function createPdo($dsn, $username, $password)
+    {
+        try {
+            return new PDO($dsn, $username, $password, [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
+        } catch (\PDOException $ex) {
+            throw new \RuntimeException("Unable connect PDO using '$dsn'", $ex->getCode(), $ex);
+        }
     }
 }

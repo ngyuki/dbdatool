@@ -23,9 +23,13 @@ class MySqlGenerator extends PseudoGenerator
 
     public function diff(SchemaDiff $diff): array
     {
+        $sqls = parent::diff($diff);
+        if (!$sqls) {
+            return $sqls;
+        }
         return array_merge(
             ['SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0'],
-            parent::diff($diff),
+            $sqls,
             ['SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS']
         );
     }

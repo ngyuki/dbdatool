@@ -45,6 +45,7 @@ EOS
             $output->write($dump);
         } else {
             file_put_contents($filename, $dump);
+            $output->writeln("Dump schema to '$filename'");
         }
     }
 }

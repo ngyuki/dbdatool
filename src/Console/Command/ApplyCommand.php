@@ -40,6 +40,8 @@ EOS
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $total = microtime(true);
+
         $source = $this->dataSourceFactory->create($input->getArgument('source'));
         $target = $this->dataSourceFactory->create($input->getArgument('target'));
 
@@ -62,11 +64,8 @@ EOS
         }
 
         foreach ($sqls as $sql) {
-            if ($output->isVerbose()) {
-                $output->writeln("\n$sql;");
-            } else {
-                $output->write('.');
-            }
+            $time = microtime(true);
+            $output->writeln("\n$sql;");
             try {
                 $pdo->exec($sql);
             } catch (\Exception $ex) {
@@ -78,13 +77,14 @@ EOS
                 $output->writeln("<error>$sql</error>");
                 throw $ex;
             }
+            $output->writeln(sprintf('  <comment>-> %.4fs</comment>', microtime(true) - $time));
         }
 
-        if ($output->isVerbose()) {
-            $output->writeln("\n\n<info>done</info>");
-        } else {
-            $output->writeln("<info>done</info>");
-        }
+        $output->writeln(sprintf(
+            "\n<bg=green;fg=black>Done, all success (time %.4fs, %d queries)</>",
+            microtime(true) - $total,
+            count($sqls)
+        ));
 
         return 0;
     }
