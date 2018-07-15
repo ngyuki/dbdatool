@@ -44,7 +44,10 @@ EOS
         $source = $this->dataSourceFactory->create($input->getArgument('source'));
         $target = $this->dataSourceFactory->create($input->getArgument('target'));
 
-        $diff = (new Comparator())->compare($target->getSchema(), $source->getSchema());
+        $diff = (new Comparator())->compare(
+            $this->filter->filter($target->getSchema()),
+            $this->filter->filter($source->getSchema())
+        );
 
         $generator = null;
 

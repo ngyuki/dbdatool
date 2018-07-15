@@ -33,11 +33,18 @@ abstract class IntegrationTest extends TestCase
         $output = $app->fetch();
         file_put_contents($diff, $output);
 
-        $this->runApp('apply', $scheme);    
+        $this->runApp('apply', $scheme);
 
         $app = $this->runApp('dump');
         $output = $app->fetch();
-        assertThat($output, equalTo(file_get_contents($scheme)));
+
+        if (file_exists($dir . '/expect.sql')) {
+            $env->clear()->load($dir . '/expect.sql');
+            $expected = $this->runApp('dump')->fetch();
+        } else {
+            $expected = file_get_contents($scheme);
+        }
+        assertThat($output, equalTo($expected));
     }
 
     private function runApp()

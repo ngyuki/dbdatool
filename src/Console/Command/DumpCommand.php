@@ -34,7 +34,7 @@ EOS
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $source = $this->dataSourceFactory->create($input->getArgument('source'));
-        $tables = $source->getSchema();
+        $tables = $this->filter->filter($source->getSchema());
 
         $output->write(json_encode($tables, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE). "\n");
     }

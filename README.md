@@ -56,10 +56,11 @@ Usage:
   dump [options] [--] [<source>]
 
 Arguments:
-  source                 Connection information or scheme file [default: "@"]
+  source                               Connection information or scheme file [default: "@"]
 
 Options:
-  -c, --config[=CONFIG]  Config filename.
+  -c, --config[=CONFIG]                Config filename.
+      --ignore-tables[=IGNORE-TABLES]  Ignore table regex patterns. (multiple values allowed)
   ...snip...
 ```
 
@@ -74,11 +75,12 @@ Usage:
   diff [options] [--] <source> [<target>]
 
 Arguments:
-  source                 Connection information or scheme file
-  target                 Connection information or scheme file [default: "@"]
+  source                               Connection information or scheme file
+  target                               Connection information or scheme file [default: "@"]
 
 Options:
-  -c, --config[=CONFIG]  Config filename.
+  -c, --config[=CONFIG]                Config filename.
+      --ignore-tables[=IGNORE-TABLES]  Ignore table regex patterns. (multiple values allowed)
   ...snip...
 ```
 
@@ -95,11 +97,12 @@ Usage:
   apply [options] [--] <source> [<target>]
 
 Arguments:
-  source                 Connection information or scheme file for source
-  target                 Connection information for target database [default: "@"]
+  source                               Connection information or scheme file for source
+  target                               Connection information for target database [default: "@"]
 
 Options:
-  -c, --config[=CONFIG]  Config filename.
+  -c, --config[=CONFIG]                Config filename.
+      --ignore-tables[=IGNORE-TABLES]  Ignore table regex patterns. (multiple values allowed)
   ...snip...
 ```
 

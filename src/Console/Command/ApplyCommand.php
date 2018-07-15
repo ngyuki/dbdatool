@@ -47,7 +47,10 @@ EOS
             throw new \RuntimeException("`target` should be data source with database connection");
         }
 
-        $diff = (new Comparator())->compare($target->getSchema(), $source->getSchema());
+        $diff = (new Comparator())->compare(
+            $this->filter->filter($target->getSchema()),
+            $this->filter->filter($source->getSchema())
+        );
 
         assert($target instanceof ConnectionSourceInterface);
         $pdo = $target->getConnection();

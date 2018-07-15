@@ -1,0 +1,41 @@
+{
+    "tt": {
+        "columns": {
+            "id": {
+                "default": null,
+                "nullable": false,
+                "type": "int(11)",
+                "charset": null,
+                "collation": null,
+                "autoIncrement": false,
+                "comment": ""
+            },
+            "str": {
+                "default": null,
+                "nullable": true,
+                "type": "varchar(100)",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "autoIncrement": false,
+                "comment": ""
+            }
+        },
+        "indexes": {
+            "PRIMARY": {
+                "type": "PRIMARY",
+                "columns": [
+                    "id"
+                ],
+                "comment": ""
+            }
+        },
+        "foreignKeys": [],
+        "options": {
+            "engine": "InnoDB",
+            "row_format": "Dynamic",
+            "charset": "utf8",
+            "collation": "utf8_general_ci",
+            "comment": ""
+        }
+    }
+}
