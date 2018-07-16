@@ -6,6 +6,14 @@ database diff/apply tool.
 
 `dbdatool dump > scheme.json` でデータベースからスキーマ定義ファイルを出力します。`dbdatool apply scheme.json` で `scheme.json` に書かれたスキーマ定義と実際のデータベースを比較して、差分を `ALTER TABLE` などで適用します。
 
+## Demo
+
+- https://asciinema.org/a/rvRpRAZPtBBxNQkyqliYD69j4
+
+## Install
+
+You can download phar file, see https://github.com/ngyuki/php-dbdatool/releases
+
 ## 簡単な使い方
 
 `config.php` にデータベース接続情報を記述します。
