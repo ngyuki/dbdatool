@@ -15,7 +15,7 @@ class DumpCommand extends AbstractCommand
 
         $this->setName('dump')->setDescription('Display schema definition file');
 
-        $this->addArgument('source', InputArgument::OPTIONAL, 'Connection information or scheme file', '@');
+        $this->addArgument('source', InputArgument::OPTIONAL, 'Connection information or schema file', '@');
         $this->addOption('output', '-o', InputOption::VALUE_REQUIRED, 'Output filename');
 
         $appName = Application::NAME;
@@ -24,10 +24,10 @@ class DumpCommand extends AbstractCommand
 Display schema definition file
 
 e.g.)
-    # dump scheme file from database (specified by config.php)
+    # dump schema file from database (specified by config.php)
     $appName dump -c config.php
     
-    # dump scheme file from database (specified by dsn)
+    # dump schema file from database (specified by dsn)
     $appName dump "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
 EOS
         );

@@ -15,22 +15,22 @@ class ApplyCommand extends AbstractCommand
     {
         parent::configure();
 
-        $this->setName('apply')->setDescription('Apply scheme difference to database');
+        $this->setName('apply')->setDescription('Apply schema difference to database');
 
-        $this->addArgument('source', InputArgument::REQUIRED, 'Connection information or scheme file for source');
+        $this->addArgument('source', InputArgument::REQUIRED, 'Connection information or schema file for source');
         $this->addArgument('target', InputArgument::OPTIONAL, 'Connection information for target database', '@');
 
         $appName = Application::NAME;
         $this->setHelp(
             <<<EOS
-Apply scheme difference to database
+Apply schema difference to database
 
 e.g.)
     # apply to database (specified by config.php)
-    $appName apply -c config.php scheme.json
+    $appName apply -c config.php schema.json
     
     # apply to database (specified by dsn)
-    $appName apply scheme.json "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
+    $appName apply schema.json "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
     
     # apply database to database (specified by config.php and dsn)
     $appName apply @ "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"

@@ -16,22 +16,22 @@ class DiffCommand extends AbstractCommand
     {
         parent::configure();
 
-        $this->setName('diff')->setDescription('Display SQL statement applying scheme difference');
+        $this->setName('diff')->setDescription('Display SQL statement applying schema difference');
 
-        $this->addArgument('source', InputArgument::REQUIRED, 'Connection information or scheme file');
-        $this->addArgument('target', InputArgument::OPTIONAL, 'Connection information or scheme file', '@');
+        $this->addArgument('source', InputArgument::REQUIRED, 'Connection information or schema file');
+        $this->addArgument('target', InputArgument::OPTIONAL, 'Connection information or schema file', '@');
 
         $appName = Application::NAME;
         $this->setHelp(
             <<<EOS
-Display SQL statement applying scheme difference
+Display SQL statement applying schema difference
 
 e.g.)
-    # difference scheme.json and database (specified by config.php)
-    $appName diff -c config.php scheme.json
+    # difference schema.json and database (specified by config.php)
+    $appName diff -c config.php schema.json
     
     # difference file and file
-    $appName diff scheme1.json scheme2.json
+    $appName diff schema1.json schema2.json
     
     # difference database and database (specified by config.php and dsn)
     $appName diff @ "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"

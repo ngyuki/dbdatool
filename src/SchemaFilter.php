@@ -1,7 +1,7 @@
 <?php
 namespace ngyuki\DbdaTool;
 
-class SchemeFilter
+class SchemaFilter
 {
     /**
      * @var string[]
@@ -15,17 +15,17 @@ class SchemeFilter
     }
 
     /**
-     * @param Table[] $scheme
+     * @param Table[] $schema
      * @return Table[]
      */
-    public function filter(array $scheme)
+    public function filter(array $schema)
     {
         foreach ($this->ignoreTablePatterns as $pattern) {
             $pattern = str_replace('/', '\\/', $pattern);
-            $scheme = array_filter($scheme, function (Table $table) use ($pattern) {
+            $schema = array_filter($schema, function (Table $table) use ($pattern) {
                 return preg_match("/$pattern/i", $table->name) === 0;
             });
         }
-        return $scheme;
+        return $schema;
     }
 }

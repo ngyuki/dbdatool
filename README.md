@@ -4,7 +4,7 @@ database diff/apply tool.
 
 稼働中の実際のデータベースとスキーマ定義ファイルを比較して差分を `ALTER TABLE` などの SQL の形で表示したり、差分を実際のデータベースへ適用したりするマイグレーションツールです。
 
-`dbdatool dump > scheme.json` でデータベースからスキーマ定義ファイルを出力します。`dbdatool apply scheme.json` で `scheme.json` に書かれたスキーマ定義と実際のデータベースを比較して、差分を `ALTER TABLE` などで適用します。
+`dbdatool dump > schema.json` でデータベースからスキーマ定義ファイルを出力します。`dbdatool apply schema.json` で `schema.json` に書かれたスキーマ定義と実際のデータベースを比較して、差分を `ALTER TABLE` などで適用します。
 
 ## Demo
 
@@ -40,19 +40,19 @@ composer.json にコンフィグのパスを追記します。
 データベースからスキーマ定義ファイルを出力します。
 
 ```sh
-php dbdatool.phar dump > scheme.json
+php dbdatool.phar dump > schema.json
 ```
 
 スキーマ定義ファイルとデータベースを比較して差分を表示します。
 
 ```sh
-php dbdatool.phar diff scheme.json
+php dbdatool.phar diff schema.json
 ```
 
 差分をデータベースに適用します。
 
 ```sh
-php dbdatool.phar apply scheme.json
+php dbdatool.phar apply schema.json
 ```
 
 ## dbdatool dump
@@ -64,7 +64,7 @@ Usage:
   dump [options] [--] [<source>]
 
 Arguments:
-  source                               Connection information or scheme file [default: "@"]
+  source                               Connection information or schema file [default: "@"]
 
 Options:
   -c, --config[=CONFIG]                Config filename.
@@ -84,8 +84,8 @@ Usage:
   diff [options] [--] <source> [<target>]
 
 Arguments:
-  source                               Connection information or scheme file
-  target                               Connection information or scheme file [default: "@"]
+  source                               Connection information or schema file
+  target                               Connection information or schema file [default: "@"]
 
 Options:
   -c, --config[=CONFIG]                Config filename.
@@ -106,7 +106,7 @@ Usage:
   apply [options] [--] <source> [<target>]
 
 Arguments:
-  source                               Connection information or scheme file for source
+  source                               Connection information or schema file for source
   target                               Connection information for target database [default: "@"]
 
 Options:
@@ -154,14 +154,14 @@ staging.php
 mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password
 
 # スキーマ定義ファイルのファイル名
-scheme.json
+schema.json
 ```
 
 例えば次のように指定します。
 
 ```sh
 # スキーマ定義ファイルの内容を、DSN 指定されたデータベースに反映
-php dbdatool.phar apply scheme.json mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password
+php dbdatool.phar apply schema.json mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password
 
 # 空のデータソースを、コンフィグのデータベースに反映
 # （すべてのテーブルが削除される）
@@ -219,21 +219,21 @@ mysql test -v < init.sql
 スキーマ定義ファイルをダンプします。
 
 ```sh
-MYSQL_DATABASE=test php dbdatool.phar dump > scheme.json
+MYSQL_DATABASE=test php dbdatool.phar dump > schema.json
 ```
 
 実際のデータベースとの差分を確認して適用します。
 
 ```sh
-php dbdatool.phar diff scheme.json
-php dbdatool.phar apply scheme.json
+php dbdatool.phar diff schema.json
+php dbdatool.phar apply schema.json
 ```
 
 Git リポジトリに追加・コミット・プッシュします。
 
 ```sh
-git add init.sql scheme.json
-git commit -m 'Fix database scheme'
+git add init.sql schema.json
+git commit -m 'Fix database schema'
 git push
 ```
 
@@ -241,8 +241,8 @@ git push
 
 ```sh
 git pull -r
-php dbdatool.phar diff scheme.json
-php dbdatool.phar apply scheme.json
+php dbdatool.phar diff schema.json
+php dbdatool.phar apply schema.json
 ```
 
 ## 制限
