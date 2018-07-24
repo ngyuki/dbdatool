@@ -32,7 +32,7 @@ abstract class AbstractCommand extends Command
 
         $this->getDefinition()->addOptions(array(
             new InputOption('--config', '-c', InputOption::VALUE_OPTIONAL, "Config filename."),
-            new InputOption('--ignore-tables', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, "Ignore table regex patterns."),
+            new InputOption('--ignore-tables', '', InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, "Ignore table regex patterns."),
         ));
     }
 
