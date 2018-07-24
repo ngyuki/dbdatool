@@ -44,9 +44,9 @@
             "phan --color -p"
         ],
         "qa": [
-            "@composer test",
             "@composer cs",
-            "@composer phan"
+            "@composer phan",
+            "@composer test"
         ],
         "build": [
             "@php -d phar.readonly=0 box.phar build -v"

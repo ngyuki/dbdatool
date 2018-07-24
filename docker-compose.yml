@@ -20,6 +20,8 @@ services:
 
   php:
     image: ngyuki/php-dev:7.0
+    depends_on:
+      - mysql
     volumes:
       - ./:/app/
     working_dir: /app/
