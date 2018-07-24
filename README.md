@@ -252,3 +252,8 @@ php dbdatool.phar apply schema.json
 例えば MySQL では `boolean` は `tinyint` のエイリアスですが、スキーマ定義に `boolean` と記述すると実際のデータベースとの比較で `tinyint` とは異なるため差分が検出されます。`boolean` の差分を適用したとしても実際のデータベースでは `tinyint` なので、スキーマ定義に `boolean` が書かれていると何度 `apply` しても差分が出続けます。
 
 このような自体を避けるためにスキーマ定義ファイルは手書きせず `dump` で稼働中のデータベースから出力することをオススメします。
+
+## 類似のツール
+
+- https://github.com/winebarrel/ridgepole
+- https://github.com/arima-ryunosuke/db-migration
