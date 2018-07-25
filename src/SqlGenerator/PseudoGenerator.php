@@ -73,8 +73,10 @@ class PseudoGenerator
                 $alters[] = $this->tableOptions($table->changeOptions);
             }
 
-            $alters = "\n  " . implode(",\n  ", $alters);
-            $sql[] = "ALTER TABLE {$this->quote($table->name)}{$alters}";
+            if ($alters) {
+                $alters = "\n  " . implode(",\n  ", $alters);
+                $sql[] = "ALTER TABLE {$this->quote($table->name)}{$alters}";
+            }
         }
 
         foreach ($diff->addTables as $table) {
