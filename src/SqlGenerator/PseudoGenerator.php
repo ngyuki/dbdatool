@@ -132,13 +132,19 @@ class PseudoGenerator
             $parts[] = "COLLATE {$column->collation}";
         }
 
+        if (strlen($column->generated)) {
+            $parts[] = "GENERATED ALWAYS AS ($column->expression) $column->generated";
+        }
+
         if ($column->nullable) {
             $parts[] = 'NULL';
         } else {
             $parts[] = 'NOT NULL';
         }
 
-        if ($column->default !== null) {
+        if (strlen($column->generated)) {
+            // noop
+        } elseif ($column->default !== null) {
             $parts[] = "DEFAULT {$this->quoteValue($column->default)}";
         } elseif ($column->nullable) {
             $parts[] = "DEFAULT NULL";

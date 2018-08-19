@@ -10,6 +10,8 @@ namespace ngyuki\DbdaTool;
  * @property $collation string
  * @property $autoIncrement bool
  * @property $comment string
+ * @property $generated string
+ * @property $expression string
  */
 class Column extends \ArrayObject implements \JsonSerializable
 {
@@ -18,12 +20,14 @@ class Column extends \ArrayObject implements \JsonSerializable
         $input = array_merge([
             'name' => '',
             'default' => null,
-            'nullable' => false,
+            'nullable' => true,
             'type' => '',
             'charset' => '',
             'collation' => '',
             'autoIncrement' => false,
             'comment' => '',
+            'generated' => '',
+            'expression' => '',
         ], $input);
 
         parent::__construct($input, self::ARRAY_AS_PROPS);

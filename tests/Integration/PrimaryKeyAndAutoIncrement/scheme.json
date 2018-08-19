@@ -8,7 +8,9 @@
                 "charset": null,
                 "collation": null,
                 "autoIncrement": true,
-                "comment": ""
+                "comment": "",
+                "generated": "",
+                "expression": ""
             },
             "id2": {
                 "default": null,
@@ -17,7 +19,9 @@
                 "charset": null,
                 "collation": null,
                 "autoIncrement": false,
-                "comment": ""
+                "comment": "",
+                "generated": "",
+                "expression": ""
             },
             "str": {
                 "default": null,
@@ -26,7 +30,9 @@
                 "charset": "utf8",
                 "collation": "utf8_general_ci",
                 "autoIncrement": false,
-                "comment": ""
+                "comment": "",
+                "generated": "",
+                "expression": ""
             }
         },
         "indexes": {

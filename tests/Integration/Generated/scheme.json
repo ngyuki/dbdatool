@@ -1,10 +1,10 @@
 {
     "t": {
         "columns": {
-            "c2": {
+            "sidea": {
                 "default": null,
-                "nullable": false,
-                "type": "int(11)",
+                "nullable": true,
+                "type": "double",
                 "charset": null,
                 "collation": null,
                 "autoIncrement": false,
@@ -12,10 +12,10 @@
                 "generated": "",
                 "expression": ""
             },
-            "c3": {
+            "sideb": {
                 "default": null,
-                "nullable": false,
-                "type": "int(11)",
+                "nullable": true,
+                "type": "double",
                 "charset": null,
                 "collation": null,
                 "autoIncrement": false,
@@ -23,16 +23,27 @@
                 "generated": "",
                 "expression": ""
             },
-            "c1": {
+            "sidec": {
                 "default": null,
-                "nullable": false,
-                "type": "int(11)",
+                "nullable": true,
+                "type": "double",
                 "charset": null,
                 "collation": null,
                 "autoIncrement": false,
                 "comment": "",
-                "generated": "",
-                "expression": ""
+                "generated": "VIRTUAL",
+                "expression": "(`sidea` + `sideb`)"
+            },
+            "sided": {
+                "default": null,
+                "nullable": true,
+                "type": "double",
+                "charset": null,
+                "collation": null,
+                "autoIncrement": false,
+                "comment": "",
+                "generated": "VIRTUAL",
+                "expression": "(`sidea` * `sideb`)"
             }
         },
         "indexes": [],
