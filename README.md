@@ -2,9 +2,9 @@
 
 database diff/apply tool.
 
-稼働中の実際のデータベースとスキーマ定義ファイルを比較して差分を `ALTER TABLE` などの SQL の形で表示したり、差分を実際のデータベースへ適用したりするマイグレーションツールです。
+稼働集のデータベースからスキーマ定義ファイルをダンプし、その定義と別のデータベースを比較して差分を `ALTER TABLE` などの SQL の形で表示したり、差分をデータベースへ適用したりするマイグレーションツールです。
 
-`dbdatool dump > schema.json` でデータベースからスキーマ定義ファイルを出力します。`dbdatool apply schema.json` で `schema.json` に書かれたスキーマ定義と実際のデータベースを比較して、差分を `ALTER TABLE` などで適用します。
+`dbdatool dump > schema.json` でデータベースからスキーマ定義ファイルを出力します。`dbdatool apply schema.json` で `schema.json` に書かれたスキーマ定義とデータベースを比較して差分を `ALTER TABLE` などで適用します。
 
 ## Demo
 
@@ -27,7 +27,7 @@ return [
 ];
 ```
 
-composer.json にコンフィグのパスを追記します。
+`composer.json` にコンフィグのパスを追記します。
 
 ```json
 {
@@ -256,4 +256,6 @@ php dbdatool.phar apply schema.json
 ## 類似のツール
 
 - https://github.com/winebarrel/ridgepole
+- https://github.com/schemalex/schemalex
+- https://github.com/k0kubun/sqldef
 - https://github.com/arima-ryunosuke/db-migration
