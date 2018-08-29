@@ -64,10 +64,16 @@ EOS
         }
 
         foreach ($sqls as $sql) {
-            $time = microtime(true);
-            $output->writeln("\n$sql;");
             try {
-                $pdo->exec($sql);
+                if ($output->isVerbose()) {
+                    $time = microtime(true);
+                    $output->writeln("\n$sql;");
+                    $pdo->exec($sql);
+                    $output->writeln(sprintf('  <comment>-> %.4fs</comment>', microtime(true) - $time));
+                } else {
+                    $output->write(".");
+                    $pdo->exec($sql);
+                }
             } catch (\Exception $ex) {
                 $output->writeln("\n");
                 $output->writeln("<error>$sql</error>");
@@ -77,7 +83,10 @@ EOS
                 $output->writeln("<error>$sql</error>");
                 throw $ex;
             }
-            $output->writeln(sprintf('  <comment>-> %.4fs</comment>', microtime(true) - $time));
+        }
+
+        if (!$output->isVerbose()) {
+            $output->writeln('');
         }
 
         $output->writeln(sprintf(
