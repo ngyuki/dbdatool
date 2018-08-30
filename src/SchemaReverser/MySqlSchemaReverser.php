@@ -50,8 +50,7 @@ class MySqlSchemaReverser implements SchemaReverserInterface
         }
 
         $sql = "
-            select TABLE_NAME, COLUMN_NAME, COLUMN_DEFAULT, IS_NULLABLE,
-                CHARACTER_SET_NAME, COLLATION_NAME, COLUMN_TYPE, EXTRA, COLUMN_COMMENT, GENERATION_EXPRESSION
+            select *
             from information_schema.COLUMNS where TABLE_SCHEMA = database()
             order by TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION
         ";
@@ -85,7 +84,7 @@ class MySqlSchemaReverser implements SchemaReverserInterface
                 $column->generated = 'VIRTUAL';
             }
 
-            $column->expression = (string)$row['GENERATION_EXPRESSION'] ?? null;
+            $column->expression = (string)($row['GENERATION_EXPRESSION'] ?? null);
 
             $table->columns[$column->name] = $column;
         }
