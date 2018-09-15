@@ -1,8 +1,8 @@
 <?php
 namespace ngyuki\DbdaTool\DataSource;
 
+use ngyuki\DbdaTool\Schema\Schema;
 use ngyuki\DbdaTool\SchemaReverser\SchemaReverserFactory;
-use ngyuki\DbdaTool\Schema\Table;
 use PDO;
 
 class ConnectionSource implements DataSourceInterface, ConnectionSourceInterface
@@ -18,7 +18,7 @@ class ConnectionSource implements DataSourceInterface, ConnectionSourceInterface
     }
 
     /**
-     * @return Table[]
+     * @return Schema
      */
     public function getSchema()
     {

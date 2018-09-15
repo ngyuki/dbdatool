@@ -38,6 +38,10 @@ class PseudoGenerator
             }
         }
 
+        foreach ($diff->dropViews as $view) {
+            $sql[] = "DROP VIEW {$this->quote($view->name)}";
+        }
+
         foreach ($diff->dropTables as $table) {
             $sql[] = "DROP TABLE {$this->quote($table->name)}";
         }
@@ -93,6 +97,14 @@ class PseudoGenerator
             foreach ($table->addForeignKeys as $foreignKey) {
                 $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addForeignKey($foreignKey)}";
             }
+        }
+
+        foreach ($diff->changeViews as $view) {
+            $sql[] = "CREATE OR REPLACE VIEW {$this->quote($view->name)} AS {$view->definition}";
+        }
+
+        foreach ($diff->addViews as $view) {
+            $sql[] = "CREATE OR REPLACE VIEW {$this->quote($view->name)} AS {$view->definition}";
         }
 
         return $sql;

@@ -1,48 +1,51 @@
 {
-    "t": {
-        "columns": {
-            "c2": {
-                "default": null,
-                "nullable": false,
-                "type": "int(11)",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "",
-                "expression": ""
+    "tables": {
+        "t": {
+            "columns": {
+                "c2": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "int(11)",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "",
+                    "expression": ""
+                },
+                "c3": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "int(11)",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "",
+                    "expression": ""
+                },
+                "c1": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "int(11)",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "",
+                    "expression": ""
+                }
             },
-            "c3": {
-                "default": null,
-                "nullable": false,
-                "type": "int(11)",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "",
-                "expression": ""
-            },
-            "c1": {
-                "default": null,
-                "nullable": false,
-                "type": "int(11)",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "",
-                "expression": ""
+            "indexes": [],
+            "foreignKeys": [],
+            "options": {
+                "engine": "InnoDB",
+                "row_format": "Dynamic",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "comment": ""
             }
-        },
-        "indexes": [],
-        "foreignKeys": [],
-        "options": {
-            "engine": "InnoDB",
-            "row_format": "Dynamic",
-            "charset": "utf8",
-            "collation": "utf8_general_ci",
-            "comment": ""
         }
-    }
+    },
+    "views": []
 }

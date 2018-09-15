@@ -3,16 +3,27 @@ namespace ngyuki\DbdaTool;
 
 use ngyuki\DbdaTool\Diff\SchemaDiff;
 use ngyuki\DbdaTool\Diff\TableDiff;
+use ngyuki\DbdaTool\Schema\Schema;
 use ngyuki\DbdaTool\Schema\Table;
+use ngyuki\DbdaTool\Schema\View;
 
 class Comparator
 {
+    public function compare(Schema $schema1, Schema $schema2): SchemaDiff
+    {
+        $diff = new SchemaDiff();
+        $diff = $this->compareTables($diff, $schema1->tables, $schema2->tables);
+        $diff = $this->compareViews($diff, $schema1->views, $schema2->views);
+        return $diff;
+    }
+
     /**
+     * @param SchemaDiff $diff
      * @param Table[] $tables1
      * @param Table[] $tables2
      * @return SchemaDiff
      */
-    public function compare(array $tables1, array $tables2): SchemaDiff
+    public function compareTables(SchemaDiff $diff, array $tables1, array $tables2): SchemaDiff
     {
         $tables1 = array_reduce($tables1, function ($r, Table $t) {
             $r[$t->name] = $t;
@@ -22,8 +33,6 @@ class Comparator
             $r[$t->name] = $t;
             return $r;
         }, []);
-
-        $diff = new SchemaDiff();
 
         foreach ($tables2 as $name => $table2) {
             if (!array_key_exists($name, $tables1)) {
@@ -167,5 +176,41 @@ class Comparator
         }
         $list[$name] = $newAfter;
         return $list;
+    }
+
+    /**
+     * @param SchemaDiff $diff
+     * @param View[] $views1
+     * @param View[] $views2
+     * @return SchemaDiff
+     */
+    public function compareViews(SchemaDiff $diff, array $views1, array $views2): SchemaDiff
+    {
+        $views1 = array_reduce($views1, function ($r, View $v) {
+            $r[$v->name] = $v;
+            return $r;
+        }, []);
+        $views2 = array_reduce($views2, function ($r, View $v) {
+            $r[$v->name] = $v;
+            return $r;
+        }, []);
+
+        foreach ($views2 as $name => $view2) {
+            if (!array_key_exists($name, $views1)) {
+                $diff->addViews[$name] = $view2;
+                continue;
+            }
+            if ($views1[$name]->definition !== $view2->definition) {
+                $diff->changeViews[$name] = $view2;
+            }
+        }
+
+        foreach ($views1 as $name => $view1) {
+            if (!array_key_exists($name, $views2)) {
+                $diff->dropViews[$name] = $view1;
+            }
+        }
+
+        return $diff;
     }
 }

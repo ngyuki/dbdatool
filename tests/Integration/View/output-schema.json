@@ -1,0 +1,11 @@
+{
+    "tables": [],
+    "views": {
+        "v2": {
+            "definition": "select 2 AS `xx`"
+        },
+        "v3": {
+            "definition": "select 2 AS `xx`"
+        }
+    }
+}

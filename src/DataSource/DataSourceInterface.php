@@ -1,12 +1,12 @@
 <?php
 namespace ngyuki\DbdaTool\DataSource;
 
-use ngyuki\DbdaTool\Schema\Table;
+use ngyuki\DbdaTool\Schema\Schema;
 
 interface DataSourceInterface
 {
     /**
-     * @return Table[]
+     * @return Schema
      */
     public function getSchema();
 }

@@ -4,7 +4,9 @@ namespace ngyuki\DbdaTool\SchemaReverser;
 use ngyuki\DbdaTool\Schema\Column;
 use ngyuki\DbdaTool\Schema\ForeignKey;
 use ngyuki\DbdaTool\Schema\Index;
+use ngyuki\DbdaTool\Schema\Schema;
 use ngyuki\DbdaTool\Schema\Table;
+use ngyuki\DbdaTool\Schema\View;
 use PDO;
 
 class MySqlSchemaReverser implements SchemaReverserInterface
@@ -20,9 +22,20 @@ class MySqlSchemaReverser implements SchemaReverserInterface
     }
 
     /**
-     * @return Table[]
+     * @return Schema
      */
     public function reverse()
+    {
+        $schema = new Schema();
+        $schema->tables = $this->reverseTables();
+        $schema->views = $this->reverseViews();
+        return $schema;
+    }
+
+    /**
+     * @return Table[]
+     */
+    private function reverseTables()
     {
         /** @var $tables Table[] */
         $tables = [];
@@ -159,5 +172,27 @@ class MySqlSchemaReverser implements SchemaReverserInterface
         }
 
         return $tables;
+    }
+
+    /**
+     * @return View[]
+     */
+    private function reverseViews()
+    {
+        /** @var $views View[] */
+        $views = [];
+
+        $sql = "select TABLE_NAME, VIEW_DEFINITION from information_schema.VIEWS where TABLE_SCHEMA = database()";
+
+        $rows = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $view = new View();
+            $view->name = $row['TABLE_NAME'];
+            $view->definition = $row['VIEW_DEFINITION'];
+            $views[$view->name] = $view;
+        }
+
+        return $views;
     }
 }

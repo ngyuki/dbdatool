@@ -1,6 +1,8 @@
 <?php
 namespace ngyuki\DbdaTool\DataSource;
 
+use ngyuki\DbdaTool\Schema\Schema;
+
 class EmptySource implements DataSourceInterface
 {
     /**
@@ -8,6 +10,6 @@ class EmptySource implements DataSourceInterface
      */
     public function getSchema()
     {
-        return [];
+        return new Schema();
     }
 }

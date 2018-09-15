@@ -1,59 +1,62 @@
 {
-    "t": {
-        "columns": {
-            "sidea": {
-                "default": null,
-                "nullable": true,
-                "type": "double",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "",
-                "expression": ""
+    "tables": {
+        "t": {
+            "columns": {
+                "sidea": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "double",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "",
+                    "expression": ""
+                },
+                "sideb": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "double",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "",
+                    "expression": ""
+                },
+                "sidec": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "double",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "VIRTUAL",
+                    "expression": "(`sidea` + `sideb`)"
+                },
+                "sided": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "double",
+                    "charset": null,
+                    "collation": null,
+                    "autoIncrement": false,
+                    "comment": "",
+                    "generated": "VIRTUAL",
+                    "expression": "(`sidea` * `sideb`)"
+                }
             },
-            "sideb": {
-                "default": null,
-                "nullable": true,
-                "type": "double",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "",
-                "expression": ""
-            },
-            "sidec": {
-                "default": null,
-                "nullable": true,
-                "type": "double",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "VIRTUAL",
-                "expression": "(`sidea` + `sideb`)"
-            },
-            "sided": {
-                "default": null,
-                "nullable": true,
-                "type": "double",
-                "charset": null,
-                "collation": null,
-                "autoIncrement": false,
-                "comment": "",
-                "generated": "VIRTUAL",
-                "expression": "(`sidea` * `sideb`)"
+            "indexes": [],
+            "foreignKeys": [],
+            "options": {
+                "engine": "InnoDB",
+                "row_format": "Dynamic",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "comment": ""
             }
-        },
-        "indexes": [],
-        "foreignKeys": [],
-        "options": {
-            "engine": "InnoDB",
-            "row_format": "Dynamic",
-            "charset": "utf8",
-            "collation": "utf8_general_ci",
-            "comment": ""
         }
-    }
+    },
+    "views": []
 }
