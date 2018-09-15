@@ -19,24 +19,20 @@ abstract class IntegrationTest extends TestCase
 
         $env = new TestEnv();
 
-        $schema = $dir . '/scheme.json';
-        $diff = $dir . '/diff.sql';
+        $schema = $dir . '/output-schema.json';
+        $diff = $dir . '/output-diff.sql';
 
         $env->clear()->load($dir . '/done.sql');
-        $app = $this->runApp('dump');
-        $output = $app->fetch();
+
+        $output = $this->runApp('dump')->fetch();
         file_put_contents($schema, $output);
 
         $env->clear()->load($dir . '/init.sql');
 
-        $app = $this->runApp('diff', $schema);
-        $output = $app->fetch();
+        $output = $this->runApp('diff', $schema)->fetch();
         file_put_contents($diff, $output);
 
         $this->runApp('apply', $schema);
-
-        $app = $this->runApp('dump');
-        $output = $app->fetch();
 
         if (file_exists($dir . '/expect.sql')) {
             $env->clear()->load($dir . '/expect.sql');
@@ -44,6 +40,8 @@ abstract class IntegrationTest extends TestCase
         } else {
             $expected = file_get_contents($schema);
         }
+
+        $output = $this->runApp('dump')->fetch();
         assertThat($output, equalTo($expected));
     }
 
