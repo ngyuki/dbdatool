@@ -1,5 +1,5 @@
 <?php
-namespace ngyuki\DbdaTool;
+namespace ngyuki\DbdaTool\Schema;
 
 /**
  * @property string       $name

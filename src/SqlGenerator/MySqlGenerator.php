@@ -1,7 +1,7 @@
 <?php
 namespace ngyuki\DbdaTool\SqlGenerator;
 
-use ngyuki\DbdaTool\SchemaDiff;
+use ngyuki\DbdaTool\Diff\SchemaDiff;
 use PDO;
 
 class MySqlGenerator extends PseudoGenerator

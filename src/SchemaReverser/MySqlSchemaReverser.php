@@ -1,10 +1,10 @@
 <?php
 namespace ngyuki\DbdaTool\SchemaReverser;
 
-use ngyuki\DbdaTool\Column;
-use ngyuki\DbdaTool\ForeignKey;
-use ngyuki\DbdaTool\Index;
-use ngyuki\DbdaTool\Table;
+use ngyuki\DbdaTool\Schema\Column;
+use ngyuki\DbdaTool\Schema\ForeignKey;
+use ngyuki\DbdaTool\Schema\Index;
+use ngyuki\DbdaTool\Schema\Table;
 use PDO;
 
 class MySqlSchemaReverser implements SchemaReverserInterface

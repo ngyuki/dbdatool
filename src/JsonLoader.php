@@ -1,6 +1,11 @@
 <?php
 namespace ngyuki\DbdaTool;
 
+use ngyuki\DbdaTool\Schema\Column;
+use ngyuki\DbdaTool\Schema\ForeignKey;
+use ngyuki\DbdaTool\Schema\Index;
+use ngyuki\DbdaTool\Schema\Table;
+
 class JsonLoader
 {
     /**

@@ -1,7 +1,7 @@
 <?php
 namespace ngyuki\DbdaTool\SchemaReverser;
 
-use ngyuki\DbdaTool\Table;
+use ngyuki\DbdaTool\Schema\Table;
 
 interface SchemaReverserInterface
 {

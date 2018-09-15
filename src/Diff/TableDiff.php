@@ -1,5 +1,10 @@
 <?php
-namespace ngyuki\DbdaTool;
+namespace ngyuki\DbdaTool\Diff;
+
+use ngyuki\DbdaTool\Schema\Column;
+use ngyuki\DbdaTool\Schema\ForeignKey;
+use ngyuki\DbdaTool\Schema\Index;
+use ngyuki\DbdaTool\Schema\Table;
 
 /**
  * @property string       $name

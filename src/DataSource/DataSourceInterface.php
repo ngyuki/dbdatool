@@ -1,7 +1,7 @@
 <?php
 namespace ngyuki\DbdaTool\DataSource;
 
-use ngyuki\DbdaTool\Table;
+use ngyuki\DbdaTool\Schema\Table;
 
 interface DataSourceInterface
 {

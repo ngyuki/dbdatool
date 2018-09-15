@@ -1,11 +1,11 @@
 <?php
 namespace ngyuki\DbdaTool\SqlGenerator;
 
-use ngyuki\DbdaTool\Column;
-use ngyuki\DbdaTool\ForeignKey;
-use ngyuki\DbdaTool\Index;
-use ngyuki\DbdaTool\SchemaDiff;
-use ngyuki\DbdaTool\Table;
+use ngyuki\DbdaTool\Diff\SchemaDiff;
+use ngyuki\DbdaTool\Schema\Column;
+use ngyuki\DbdaTool\Schema\ForeignKey;
+use ngyuki\DbdaTool\Schema\Index;
+use ngyuki\DbdaTool\Schema\Table;
 
 class PseudoGenerator
 {

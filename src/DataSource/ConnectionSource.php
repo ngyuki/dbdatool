@@ -2,7 +2,7 @@
 namespace ngyuki\DbdaTool\DataSource;
 
 use ngyuki\DbdaTool\SchemaReverser\SchemaReverserFactory;
-use ngyuki\DbdaTool\Table;
+use ngyuki\DbdaTool\Schema\Table;
 use PDO;
 
 class ConnectionSource implements DataSourceInterface, ConnectionSourceInterface

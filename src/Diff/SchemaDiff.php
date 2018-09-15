@@ -1,5 +1,7 @@
 <?php
-namespace ngyuki\DbdaTool;
+namespace ngyuki\DbdaTool\Diff;
+
+use ngyuki\DbdaTool\Schema\Table;
 
 class SchemaDiff
 {

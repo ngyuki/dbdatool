@@ -1,6 +1,8 @@
 <?php
 namespace ngyuki\DbdaTool;
 
+use ngyuki\DbdaTool\Schema\Table;
+
 class SchemaFilter
 {
     /**

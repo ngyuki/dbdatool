@@ -1,6 +1,10 @@
 <?php
 namespace ngyuki\DbdaTool;
 
+use ngyuki\DbdaTool\Diff\SchemaDiff;
+use ngyuki\DbdaTool\Diff\TableDiff;
+use ngyuki\DbdaTool\Schema\Table;
+
 class Comparator
 {
     /**
