@@ -11,3 +11,6 @@ vendor/autoload.php:
 
 clean:
 	docker-compose down --volumes --remove-orphans
+
+build:
+	docker-compose run --rm php composer build
