@@ -7,6 +7,7 @@ use ngyuki\DbdaTool\DataSource\ConnectionSourceInterface;
 use ngyuki\DbdaTool\SqlGenerator\MySqlGenerator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ApplyCommand extends AbstractCommand
@@ -19,6 +20,8 @@ class ApplyCommand extends AbstractCommand
 
         $this->addArgument('source', InputArgument::REQUIRED, 'Connection information or schema file for source');
         $this->addArgument('target', InputArgument::OPTIONAL, 'Connection information for target database', '@');
+
+        $this->addOption('--exit-status', '', InputOption::VALUE_NONE, 'Has changed then exit code will be 2');
 
         $appName = Application::NAME;
         $this->setHelp(
@@ -95,6 +98,6 @@ EOS
             count($sqls)
         ));
 
-        return 0;
+        return $input->getOption('exit-status') ? 2 : 0;
     }
 }
