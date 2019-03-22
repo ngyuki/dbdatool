@@ -6,10 +6,11 @@ use Test\Integration\IntegrationTest;
 
 class Test extends IntegrationTest
 {
-    protected function setUp()
+    /**
+     * @before
+     */
+    protected function initEnv()
     {
-        parent::setUp();
-
         $env = new TestEnv();
         $row = $env->pdo()->query('select * from information_schema.COLUMNS limit 1')->fetch();
         if (!array_key_exists('GENERATION_EXPRESSION', $row)) {
