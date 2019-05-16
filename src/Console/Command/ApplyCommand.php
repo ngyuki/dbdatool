@@ -35,6 +35,9 @@ e.g.)
     # apply to database (specified by dsn)
     $appName apply schema.json "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
     
+    # difference file and stdin
+    cat schema1.json | $appName apply - schema2.json
+
     # apply database to database (specified by config.php and dsn)
     $appName apply @ "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
 EOS

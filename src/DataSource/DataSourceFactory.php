@@ -25,6 +25,10 @@ class DataSourceFactory
             return new EmptySource();
         }
 
+        if ($arg === '-') {
+            return new PipeSource(STDIN);
+        }
+
         if (preg_match('/^\w\w+:/', $arg)) {
             return self::createByDsn($arg);
         }

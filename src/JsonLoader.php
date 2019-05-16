@@ -17,6 +17,15 @@ class JsonLoader
     public function load($filename)
     {
         $content = file_get_contents($filename);
+        return $this->parse($content);
+    }
+
+    /**
+     * @param string $content
+     * @return Schema
+     */
+    public function parse($content)
+    {
         $arr = json_decode($content, true);
         return $this->fromArray($arr);
     }
