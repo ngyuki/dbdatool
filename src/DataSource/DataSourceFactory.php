@@ -73,6 +73,7 @@ class DataSourceFactory
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
         } catch (\PDOException $ex) {
+            // @phan-suppress-next-line PhanTypeMismatchArgumentInternal
             throw new \RuntimeException("Unable connect PDO using '$dsn'", $ex->getCode(), $ex);
         }
     }
