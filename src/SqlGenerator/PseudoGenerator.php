@@ -157,7 +157,11 @@ class PseudoGenerator
         if (strlen($column->generated)) {
             // noop
         } elseif ($column->default !== null) {
-            $parts[] = "DEFAULT {$this->quoteValue($column->default)}";
+            if ($column->defaultGenerated) {
+                $parts[] = "DEFAULT {$column->default}";
+            } else {
+                $parts[] = "DEFAULT {$this->quoteValue($column->default)}";
+            }
         } elseif ($column->nullable) {
             $parts[] = "DEFAULT NULL";
         }

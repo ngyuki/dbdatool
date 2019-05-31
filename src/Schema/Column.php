@@ -4,6 +4,7 @@ namespace ngyuki\DbdaTool\Schema;
 /**
  * @property $name string
  * @property $default mixed
+ * @property $defaultGenerated bool
  * @property $nullable bool
  * @property $type string
  * @property $charset string
@@ -20,6 +21,7 @@ class Column extends \ArrayObject implements \JsonSerializable
         $input = array_merge([
             'name' => '',
             'default' => null,
+            'defaultGenerated' => false,
             'nullable' => true,
             'type' => '',
             'charset' => '',

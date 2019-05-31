@@ -97,6 +97,10 @@ class MySqlSchemaReverser implements SchemaReverserInterface
                 $column->generated = 'VIRTUAL';
             }
 
+            if (preg_match('/DEFAULT_GENERATED/', $row['EXTRA'])) {
+                $column->defaultGenerated = true;
+            }
+
             $column->expression = (string)($row['GENERATION_EXPRESSION'] ?? null);
 
             $table->columns[$column->name] = $column;
