@@ -23,6 +23,7 @@ env:
     - MYSQL_DATABASE=test
 
 before_install:
+  - mysql -e 'select version()'
   - mysql -e 'CREATE DATABASE test'
 
 install:
