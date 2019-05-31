@@ -5,35 +5,17 @@
                 "c2": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "int(11)"
                 },
                 "c3": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "int(11)"
                 },
                 "c1": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "int(11)"
                 }
             },
             "indexes": [],

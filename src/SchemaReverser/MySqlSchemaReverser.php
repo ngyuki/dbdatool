@@ -77,13 +77,13 @@ class MySqlSchemaReverser implements SchemaReverserInterface
             $table = $tables[$row['TABLE_NAME']];
 
             $column = new Column();
-            $column->name = $row['COLUMN_NAME'];
+            $column->name = (string)$row['COLUMN_NAME'];
             $column->default = $row['COLUMN_DEFAULT'];
             $column->nullable = $row['IS_NULLABLE'] === 'YES';
-            $column->charset = $row['CHARACTER_SET_NAME'];
-            $column->collation = $row['COLLATION_NAME'];
-            $column->type = $row['COLUMN_TYPE'];
-            $column->comment = $row['COLUMN_COMMENT'];
+            $column->charset = (string)$row['CHARACTER_SET_NAME'];
+            $column->collation = (string)$row['COLLATION_NAME'];
+            $column->type = (string)$row['COLUMN_TYPE'];
+            $column->comment = (string)$row['COLUMN_COMMENT'];
 
             if (preg_match('/auto_increment/', $row['EXTRA'])) {
                 $column->autoIncrement = true;

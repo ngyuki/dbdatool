@@ -2,41 +2,60 @@
 namespace ngyuki\DbdaTool\Schema;
 
 /**
- * @property $name string
- * @property $default mixed
- * @property $defaultGenerated bool
- * @property $nullable bool
- * @property $type string
- * @property $charset string
- * @property $collation string
- * @property $autoIncrement bool
- * @property $comment string
- * @property $generated string
- * @property $expression string
+ * @property string $name
+ * @property mixed  $default
+ * @property bool   $defaultGenerated
+ * @property bool   $nullable
+ * @property string $type
+ * @property string $charset
+ * @property string $collation
+ * @property bool   $autoIncrement
+ * @property string $comment
+ * @property string $generated
+ * @property string $expression
  */
 class Column extends \ArrayObject implements \JsonSerializable
 {
+    private static $defaults = [
+        'name' => '',
+        'default' => null,
+        'defaultGenerated' => false,
+        'nullable' => true,
+        'type' => '',
+        'charset' => '',
+        'collation' => '',
+        'autoIncrement' => false,
+        'comment' => '',
+        'generated' => '',
+        'expression' => '',
+    ];
+
     public function __construct($input = array())
     {
-        $input = array_merge([
-            'name' => '',
-            'default' => null,
-            'defaultGenerated' => false,
-            'nullable' => true,
-            'type' => '',
-            'charset' => '',
-            'collation' => '',
-            'autoIncrement' => false,
-            'comment' => '',
-            'generated' => '',
-            'expression' => '',
-        ], $input);
+        $input = array_merge(static::$defaults, $input);
 
         parent::__construct($input, self::ARRAY_AS_PROPS);
     }
 
     public function jsonSerialize()
     {
-        return array_diff_key($this->getArrayCopy(), ['name' => '']);
+        $optionals = [
+            'defaultGenerated',
+            'charset',
+            'collation',
+            'autoIncrement',
+            'comment',
+            'generated',
+            'expression',
+        ];
+        $arr = array_diff_key($this->getArrayCopy(), ['name' => '']);
+        foreach ($optionals as $key) {
+            if (array_key_exists($key, $arr)) {
+                if ($arr[$key] === static::$defaults[$key]) {
+                    unset($arr[$key]);
+                }
+            }
+        }
+        return $arr;
     }
 }

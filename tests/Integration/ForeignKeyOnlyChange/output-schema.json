@@ -5,24 +5,14 @@
                 "id": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "int(11)"
                 },
                 "str": {
                     "default": null,
                     "nullable": true,
                     "type": "text",
                     "charset": "utf8",
-                    "collation": "utf8_general_ci",
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "collation": "utf8_general_ci"
                 }
             },
             "indexes": {
@@ -48,24 +38,14 @@
                 "id": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "int(11)"
                 },
                 "str": {
                     "default": null,
                     "nullable": true,
                     "type": "text",
                     "charset": "utf8",
-                    "collation": "utf8_general_ci",
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "collation": "utf8_general_ci"
                 }
             },
             "indexes": {

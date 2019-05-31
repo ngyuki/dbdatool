@@ -5,33 +5,17 @@
                 "sidea": {
                     "default": null,
                     "nullable": true,
-                    "type": "double",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "double"
                 },
                 "sideb": {
                     "default": null,
                     "nullable": true,
-                    "type": "double",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "double"
                 },
                 "sidec": {
                     "default": null,
                     "nullable": true,
                     "type": "double",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
                     "generated": "VIRTUAL",
                     "expression": "(`sidea` + `sideb`)"
                 },
@@ -39,10 +23,6 @@
                     "default": null,
                     "nullable": true,
                     "type": "double",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
                     "generated": "VIRTUAL",
                     "expression": "(`sidea` * `sideb`)"
                 }

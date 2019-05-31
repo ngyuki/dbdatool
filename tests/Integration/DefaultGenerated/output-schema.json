@@ -6,25 +6,12 @@
                     "default": "CURRENT_TIMESTAMP",
                     "defaultGenerated": true,
                     "nullable": false,
-                    "type": "datetime",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "datetime"
                 },
                 "d2": {
                     "default": "2019-12-31 23:59:59",
-                    "defaultGenerated": false,
                     "nullable": false,
-                    "type": "datetime",
-                    "charset": null,
-                    "collation": null,
-                    "autoIncrement": false,
-                    "comment": "",
-                    "generated": "",
-                    "expression": ""
+                    "type": "datetime"
                 }
             },
             "indexes": [],
