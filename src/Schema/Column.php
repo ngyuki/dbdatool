@@ -10,6 +10,7 @@ namespace ngyuki\DbdaTool\Schema;
  * @property string $charset
  * @property string $collation
  * @property bool   $autoIncrement
+ * @property bool   $onUpdateCurrentTimestamp
  * @property string $comment
  * @property string $generated
  * @property string $expression
@@ -25,6 +26,7 @@ class Column extends \ArrayObject implements \JsonSerializable
         'charset' => '',
         'collation' => '',
         'autoIncrement' => false,
+        'onUpdateCurrentTimestamp' => false,
         'comment' => '',
         'generated' => '',
         'expression' => '',
@@ -44,6 +46,7 @@ class Column extends \ArrayObject implements \JsonSerializable
             'charset',
             'collation',
             'autoIncrement',
+            'onUpdateCurrentTimestamp',
             'comment',
             'generated',
             'expression',

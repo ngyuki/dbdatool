@@ -1,0 +1,42 @@
+{
+    "tables": {
+        "t": {
+            "columns": {
+                "id": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "int(11)"
+                },
+                "val": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "int(11)"
+                },
+                "updated_at": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "timestamp",
+                    "onUpdateCurrentTimestamp": true
+                }
+            },
+            "indexes": {
+                "PRIMARY": {
+                    "type": "PRIMARY",
+                    "columns": [
+                        "id"
+                    ],
+                    "comment": ""
+                }
+            },
+            "foreignKeys": [],
+            "options": {
+                "engine": "InnoDB",
+                "row_format": "Dynamic",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "comment": ""
+            }
+        }
+    },
+    "views": []
+}

@@ -170,6 +170,10 @@ class PseudoGenerator
             $parts[] = "auto_increment";
         }
 
+        if ($column->onUpdateCurrentTimestamp) {
+            $parts[] = "ON UPDATE CURRENT_TIMESTAMP";
+        }
+
         if (strlen($column->comment)) {
             $parts[] = "COMMENT {$this->quoteValue($column->comment)}";
         }

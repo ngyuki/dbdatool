@@ -89,6 +89,10 @@ class MySqlSchemaReverser implements SchemaReverserInterface
                 $column->autoIncrement = true;
             }
 
+            if (preg_match('/on update CURRENT_TIMESTAMP/i', $row['EXTRA'])) {
+                $column->onUpdateCurrentTimestamp = true;
+            }
+
             if (preg_match('/STORED GENERATED/', $row['EXTRA'])) {
                 $column->generated = 'STORED';
             }
