@@ -2,6 +2,7 @@
 namespace ngyuki\DbdaTool\SqlGenerator;
 
 use ngyuki\DbdaTool\Diff\SchemaDiff;
+use ngyuki\DbdaTool\Schema\CheckConstraint;
 use ngyuki\DbdaTool\Schema\Column;
 use ngyuki\DbdaTool\Schema\ForeignKey;
 use ngyuki\DbdaTool\Schema\Index;
@@ -31,6 +32,12 @@ class PseudoGenerator
     public function diff(SchemaDiff $diff): array
     {
         $sql = [];
+
+        foreach ($diff->changeTables as $table) {
+            foreach ($table->dropCheckConstraints as $checkConstraint) {
+                $sql[] = "ALTER TABLE {$this->quote($table->name)} DROP CHECK {$this->quote($checkConstraint->name)}";
+            }
+        }
 
         foreach ($diff->changeTables as $table) {
             foreach ($table->dropForeignKeys as $foreignKey) {
@@ -91,11 +98,17 @@ class PseudoGenerator
             foreach ($table->foreignKeys as $foreignKey) {
                 $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addForeignKey($foreignKey)}";
             }
+            foreach ($table->checkConstraints as $checkConstraint) {
+                $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addCheckConstraint($checkConstraint)}";
+            }
         }
 
         foreach ($diff->changeTables as $table) {
             foreach ($table->addForeignKeys as $foreignKey) {
                 $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addForeignKey($foreignKey)}";
+            }
+            foreach ($table->addCheckConstraints as $checkConstraint) {
+                $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addCheckConstraint($checkConstraint)}";
             }
         }
 
@@ -231,6 +244,15 @@ class PseudoGenerator
             $foreignKey->onUpdate,
             $foreignKey->onDelete
         );
+    }
+
+    public function addCheckConstraint(CheckConstraint $checkConstraint): string
+    {
+        if ($checkConstraint->enforced) {
+            return "ADD CONSTRAINT {$this->quote($checkConstraint->name)} CHECK {$checkConstraint->expr}";
+        } else {
+            return "ADD CONSTRAINT {$this->quote($checkConstraint->name)} CHECK {$checkConstraint->expr} NOT ENFORCED";
+        }
     }
 
     public function tableOptions($options)

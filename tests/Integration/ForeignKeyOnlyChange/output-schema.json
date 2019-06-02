@@ -25,6 +25,7 @@
                 }
             },
             "foreignKeys": [],
+            "checkConstraints": [],
             "options": {
                 "engine": "InnoDB",
                 "row_format": "Dynamic",
@@ -70,6 +71,7 @@
                     "onDelete": "NO ACTION"
                 }
             },
+            "checkConstraints": [],
             "options": {
                 "engine": "InnoDB",
                 "row_format": "Dynamic",

@@ -1,6 +1,7 @@
 <?php
 namespace ngyuki\DbdaTool;
 
+use ngyuki\DbdaTool\Schema\CheckConstraint;
 use ngyuki\DbdaTool\Schema\Column;
 use ngyuki\DbdaTool\Schema\ForeignKey;
 use ngyuki\DbdaTool\Schema\Index;
@@ -61,6 +62,11 @@ class JsonLoader
             array_walk($table->foreignKeys, function (array &$foreignKey, string $name) {
                 $foreignKey = new ForeignKey($foreignKey);
                 $foreignKey->name = $name;
+            });
+
+            array_walk($table->checkConstraints, function (array &$checkConstraint, string $name) {
+                $checkConstraint = new CheckConstraint($checkConstraint);
+                $checkConstraint->name = $name;
             });
 
             $schema->tables[$table->name] = $table;

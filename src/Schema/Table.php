@@ -2,11 +2,12 @@
 namespace ngyuki\DbdaTool\Schema;
 
 /**
- * @property string       $name
- * @property Column[]     $columns
- * @property Index[]      $indexes
- * @property ForeignKey[] $foreignKeys
- * @property string[]     $options
+ * @property string             $name
+ * @property Column[]           $columns
+ * @property Index[]            $indexes
+ * @property ForeignKey[]       $foreignKeys
+ * @property CheckConstraint[]  $checkConstraints
+ * @property string[]           $options
  */
 class Table extends \ArrayObject implements \JsonSerializable
 {
@@ -17,6 +18,7 @@ class Table extends \ArrayObject implements \JsonSerializable
             'columns' => [],
             'indexes' => [],
             'foreignKeys' => [],
+            'checkConstraints' => [],
             'options' => [],
         ], $input);
 

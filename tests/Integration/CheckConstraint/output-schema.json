@@ -1,0 +1,92 @@
+{
+    "tables": {
+        "t1": {
+            "columns": {
+                "c1": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "int(11)"
+                },
+                "c2": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "int(11)"
+                },
+                "c3": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "int(11)"
+                }
+            },
+            "indexes": [],
+            "foreignKeys": [],
+            "checkConstraints": {
+                "c1_nonzero": {
+                    "expr": "(`c1` <> 0)",
+                    "enforced": false
+                },
+                "c2x_positive": {
+                    "expr": "(`c2` > 0)",
+                    "enforced": true
+                },
+                "t1_chk_1": {
+                    "expr": "(`c1` <> `c2`)",
+                    "enforced": true
+                },
+                "t1_chk_2": {
+                    "expr": "(`c1` > 10)",
+                    "enforced": true
+                },
+                "t1_chk_3": {
+                    "expr": "(`c3` < 200)",
+                    "enforced": true
+                },
+                "t1_chk_4": {
+                    "expr": "(`c1` > `c3`)",
+                    "enforced": false
+                }
+            },
+            "options": {
+                "engine": "InnoDB",
+                "row_format": "Dynamic",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "comment": ""
+            }
+        },
+        "t3": {
+            "columns": {
+                "c1": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "int(11)"
+                },
+                "c2": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "int(11)"
+                }
+            },
+            "indexes": [],
+            "foreignKeys": [],
+            "checkConstraints": {
+                "t3_chk_1": {
+                    "expr": "(`c1` <> `c2`)",
+                    "enforced": true
+                },
+                "t3_chk_2": {
+                    "expr": "(`c1` > 10)",
+                    "enforced": true
+                }
+            },
+            "options": {
+                "engine": "InnoDB",
+                "row_format": "Dynamic",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "comment": ""
+            }
+        }
+    },
+    "views": []
+}

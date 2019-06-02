@@ -1,6 +1,7 @@
 <?php
 namespace ngyuki\DbdaTool\SchemaReverser;
 
+use ngyuki\DbdaTool\Schema\CheckConstraint;
 use ngyuki\DbdaTool\Schema\Column;
 use ngyuki\DbdaTool\Schema\ForeignKey;
 use ngyuki\DbdaTool\Schema\Index;
@@ -177,6 +178,39 @@ class MySqlSchemaReverser implements SchemaReverserInterface
             $foreignKey->onDelete = $row['DELETE_RULE'];
 
             $table->foreignKeys[$foreignKey->name] = $foreignKey;
+        }
+
+        $sql = "
+            select 1 from information_schema.TABLES
+            where TABLE_SCHEMA = 'information_schema' AND TABLE_NAME = 'CHECK_CONSTRAINTS'
+        ";
+
+        $row = $this->pdo->query($sql)->fetch();
+        if ($row) {
+            $sql = '
+                select TABLE_NAME, CONSTRAINT_NAME, CHECK_CLAUSE, ENFORCED
+                from information_schema.CHECK_CONSTRAINTS
+                inner join information_schema.TABLE_CONSTRAINTS
+                    using (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, CONSTRAINT_NAME)
+                where CONSTRAINT_SCHEMA = database()
+                order by TABLE_NAME, CONSTRAINT_NAME
+            ';
+
+            $rows = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($rows as $row) {
+                if (!isset($tables[$row['TABLE_NAME']])) {
+                    continue;
+                }
+                $table = $tables[$row['TABLE_NAME']];
+
+                $checkConstraint = new CheckConstraint();
+                $checkConstraint->name = $row['CONSTRAINT_NAME'];
+                $checkConstraint->expr = $row['CHECK_CLAUSE'];
+                $checkConstraint->enforced = $row['ENFORCED'] === 'YES';
+
+                $table->checkConstraints[$checkConstraint->name] = $checkConstraint;
+            }
         }
 
         return $tables;

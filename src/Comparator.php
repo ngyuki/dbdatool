@@ -156,6 +156,27 @@ class Comparator
             }
         }
 
+        foreach ($table2->checkConstraints as $name => $checkConstraint2) {
+            if (!array_key_exists($name, $table1->checkConstraints)) {
+                $tableDiff->addCheckConstraints[$name] = $checkConstraint2;
+                $changes++;
+                continue;
+            }
+            $checkConstraint1 = $table1->checkConstraints[$name];
+            if ((array)$checkConstraint1 != (array)$checkConstraint2) {
+                $tableDiff->dropCheckConstraints[$name] = $checkConstraint1;
+                $tableDiff->addCheckConstraints[$name] = $checkConstraint2;
+                $changes++;
+            }
+        }
+
+        foreach ($table1->checkConstraints as $name => $checkConstraint1) {
+            if (!array_key_exists($name, $table2->checkConstraints)) {
+                $tableDiff->dropCheckConstraints[$name] = $checkConstraint1;
+                $changes++;
+            }
+        }
+
         if ((array)$table1->options != (array)$table2->options) {
             $tableDiff->changeOptions = $table2->options;
             $changes++;

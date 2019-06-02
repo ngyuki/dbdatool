@@ -32,6 +32,7 @@
                 }
             },
             "foreignKeys": [],
+            "checkConstraints": [],
             "options": {
                 "engine": "InnoDB",
                 "row_format": "Dynamic",
