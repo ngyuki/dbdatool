@@ -33,15 +33,15 @@ class PseudoGenerator
     {
         $sql = [];
 
-        foreach ($diff->changeTables as $table) {
-            foreach ($table->dropCheckConstraints as $checkConstraint) {
-                $sql[] = "ALTER TABLE {$this->quote($table->name)} DROP CHECK {$this->quote($checkConstraint->name)}";
+        foreach ($diff->changeTables as $tableDiff) {
+            foreach ($tableDiff->dropCheckConstraints as $checkConstraint) {
+                $sql[] = "ALTER TABLE {$this->quote($tableDiff->name)} DROP CHECK {$this->quote($checkConstraint->name)}";
             }
         }
 
-        foreach ($diff->changeTables as $table) {
-            foreach ($table->dropForeignKeys as $foreignKey) {
-                $sql[] = "ALTER TABLE {$this->quote($table->name)} DROP FOREIGN KEY {$this->quote($foreignKey->name)}";
+        foreach ($diff->changeTables as $tableDiff) {
+            foreach ($tableDiff->dropForeignKeys as $foreignKey) {
+                $sql[] = "ALTER TABLE {$this->quote($tableDiff->name)} DROP FOREIGN KEY {$this->quote($foreignKey->name)}";
             }
         }
 
@@ -53,10 +53,10 @@ class PseudoGenerator
             $sql[] = "DROP TABLE {$this->quote($table->name)}";
         }
 
-        foreach ($diff->changeTables as $table) {
+        foreach ($diff->changeTables as $tableDiff) {
             $alters = [];
 
-            foreach ($table->dropIndexes as $index) {
+            foreach ($tableDiff->dropIndexes as $index) {
                 if ($index->isPrimary()) {
                     $alters[] = "DROP PRIMARY KEY";
                 } else {
@@ -64,29 +64,29 @@ class PseudoGenerator
                 }
             }
 
-            foreach ($table->dropColumns as $column) {
+            foreach ($tableDiff->dropColumns as $column) {
                 $alters[] = "DROP COLUMN {$this->quote($column->name)}";
             }
 
-            foreach ($table->addColumns as $column) {
-                $alters[] = "ADD COLUMN {$this->columnDefinitionWithAfter($table->table, $column)}";
+            foreach ($tableDiff->addColumns as $column) {
+                $alters[] = "ADD COLUMN {$this->columnDefinitionWithAfter($tableDiff->table, $column)}";
             }
 
-            foreach ($table->changeColumns as $column) {
-                $alters[] = "CHANGE COLUMN {$this->quote($column->name)} {$this->columnDefinitionWithAfter($table->table, $column)}";
+            foreach ($tableDiff->changeColumns as $column) {
+                $alters[] = "CHANGE COLUMN {$this->quote($column->name)} {$this->columnDefinitionWithAfter($tableDiff->table, $column)}";
             }
 
-            foreach ($table->addIndexes as $index) {
+            foreach ($tableDiff->addIndexes as $index) {
                 $alters[] = "ADD {$this->indexDefinition($index)}";
             }
 
-            if ($table->changeOptions) {
-                $alters[] = $this->tableOptions($table->changeOptions);
+            if ($tableDiff->changeOptions) {
+                $alters[] = $this->tableOptions($tableDiff->changeOptions);
             }
 
             if ($alters) {
                 $alters = "\n  " . implode(",\n  ", $alters);
-                $sql[] = "ALTER TABLE {$this->quote($table->name)}{$alters}";
+                $sql[] = "ALTER TABLE {$this->quote($tableDiff->name)}{$alters}";
             }
         }
 
@@ -103,12 +103,12 @@ class PseudoGenerator
             }
         }
 
-        foreach ($diff->changeTables as $table) {
-            foreach ($table->addForeignKeys as $foreignKey) {
-                $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addForeignKey($foreignKey)}";
+        foreach ($diff->changeTables as $tableDiff) {
+            foreach ($tableDiff->addForeignKeys as $foreignKey) {
+                $sql[] = "ALTER TABLE {$this->quote($tableDiff->name)} {$this->addForeignKey($foreignKey)}";
             }
-            foreach ($table->addCheckConstraints as $checkConstraint) {
-                $sql[] = "ALTER TABLE {$this->quote($table->name)} {$this->addCheckConstraint($checkConstraint)}";
+            foreach ($tableDiff->addCheckConstraints as $checkConstraint) {
+                $sql[] = "ALTER TABLE {$this->quote($tableDiff->name)} {$this->addCheckConstraint($checkConstraint)}";
             }
         }
 
