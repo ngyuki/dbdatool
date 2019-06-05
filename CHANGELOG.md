@@ -1,6 +1,8 @@
 # Changelog
 
-## next
+## Next release
+
+## v0.0.5 2019-06-05
 
 **Features**
 
