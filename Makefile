@@ -14,3 +14,6 @@ clean:
 
 build:
 	docker-compose run --rm php composer build
+
+sign:
+	gpg --detach-sign --armor --interactive dbdatool.phar
