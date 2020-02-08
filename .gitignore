@@ -5,4 +5,5 @@
 /.env
 /.envrc
 /dbdatool.phar
+/dbdatool.phar.asc
 /demo/

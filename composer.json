@@ -3,7 +3,7 @@
     "description": "Database diff/apply tool.",
     "type": "library",
     "keywords": [ "database", "migrations" ],
-    "homepage": "https://github.com/ngyuki/php-dbdatool",
+    "homepage": "https://github.com/ngyuki/dbdatool",
     "license": "MIT",
     "authors": [
         { "name": "ngyuki", "email": "ngyuki.jp@gmail.com" }

@@ -12,7 +12,7 @@ database diff/apply tool.
 
 ## Install
 
-You can download phar file, see https://github.com/ngyuki/php-dbdatool/releases
+You can download phar file, see https://github.com/ngyuki/dbdatool/releases
 
 ## 簡単な使い方
 
