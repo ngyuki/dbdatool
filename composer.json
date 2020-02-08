@@ -11,7 +11,9 @@
     "config": {
         "platform": {
             "php": "7.0.10"
-        }
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
     },
     "require": {
         "php": "~7.0.10|~7.1|~7.2",
