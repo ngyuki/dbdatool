@@ -1,5 +1,10 @@
 # dbdatool
 
+[![Build Status](https://travis-ci.org/ngyuki/dbdatool.svg?branch=master)](https://travis-ci.org/ngyuki/dbdatool)
+[![Latest Stable Version](https://poser.pugx.org/ngyuki/dbdatool/v/stable)](https://packagist.org/packages/ngyuki/dbdatool)
+[![Latest Unstable Version](https://poser.pugx.org/ngyuki/dbdatool/v/unstable)](https://packagist.org/packages/ngyuki/dbdatool)
+[![License](https://poser.pugx.org/ngyuki/dbdatool/license)](https://packagist.org/packages/ngyuki/dbdatool)
+
 database diff/apply tool.
 
 稼働集のデータベースからスキーマ定義ファイルをダンプし、その定義と別のデータベースを比較して差分を `ALTER TABLE` などの SQL の形で表示したり、差分をデータベースへ適用したりするマイグレーションツールです。
