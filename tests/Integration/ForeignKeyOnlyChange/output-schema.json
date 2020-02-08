@@ -5,7 +5,7 @@
                 "id": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "str": {
                     "default": null,
@@ -39,7 +39,7 @@
                 "id": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "str": {
                     "default": null,

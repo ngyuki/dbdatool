@@ -5,13 +5,13 @@
                 "id1": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)",
+                    "type": "int",
                     "autoIncrement": true
                 },
                 "id2": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "str": {
                     "default": null,

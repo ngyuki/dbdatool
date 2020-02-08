@@ -5,12 +5,12 @@
                 "id": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "val": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "updated_at": {
                     "default": null,

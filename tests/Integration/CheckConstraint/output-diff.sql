@@ -10,8 +10,8 @@ ALTER TABLE `t1` DROP CHECK `c2_positive`;
 DROP TABLE `t2`;
 
 CREATE TABLE `t3` (
-  `c1` int(11) NULL DEFAULT NULL,
-  `c2` int(11) NULL DEFAULT NULL
+  `c1` int NULL DEFAULT NULL,
+  `c2` int NULL DEFAULT NULL
 ) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='' ROW_FORMAT=Dynamic;
 
 ALTER TABLE `t3` ADD CONSTRAINT `t3_chk_1` CHECK (`c1` <> `c2`);

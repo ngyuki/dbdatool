@@ -5,17 +5,17 @@
                 "c2": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "c3": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 },
                 "c1": {
                     "default": null,
                     "nullable": false,
-                    "type": "int(11)"
+                    "type": "int"
                 }
             },
             "indexes": [],

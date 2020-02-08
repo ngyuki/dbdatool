@@ -2,8 +2,8 @@
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
 CREATE TABLE `t` (
-  `id` int(11) NOT NULL,
-  `val` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `val` int NOT NULL,
   `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='' ROW_FORMAT=Dynamic;
