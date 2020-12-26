@@ -1,24 +1,6 @@
 version: '3'
 
 services:
-  mysql:
-    image: mysql:8
-    volumes:
-      - ./:/app/
-    working_dir: /app/
-    ports:
-      - ${MYSQL_TCP_PORT-13306}:3306
-    environment: &environment
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: ${MYSQL_DATABASE-test}
-      MYSQL_USER: ${MYSQL_USER-test}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD-pass}
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-    command:
-      - --default_authentication_plugin=mysql_native_password
-      - --character-set-server=utf8
-
   php:
     image: ngyuki/php-dev:7.0
     depends_on:
@@ -27,8 +9,13 @@ services:
       - ./:/app/
     working_dir: /app/
     stop_signal: KILL
-    environment:
-      <<: *environment
+    environment: &environment
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
     command:
       - sh
       - -c
@@ -37,3 +24,16 @@ services:
         php -v
         echo
         tail -f /dev/null
+
+  mysql:
+    image: mysql:8
+    volumes:
+      - ./:/app/
+    working_dir: /app/
+    ports:
+      - ${MYSQL_TCP_PORT-13306}:3306
+    environment:
+      <<: *environment
+    command:
+      - --default_authentication_plugin=mysql_native_password
+      - --character-set-server=utf8
