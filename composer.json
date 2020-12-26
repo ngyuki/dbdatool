@@ -6,20 +6,27 @@
     "homepage": "https://github.com/ngyuki/dbdatool",
     "license": "MIT",
     "authors": [
-        { "name": "ngyuki", "email": "ngyuki.jp@gmail.com" }
+        { "name": "Toshiyuki Goto", "email": "ngyuki.jp@gmail.com" }
     ],
     "config": {
-        "platform": {
-            "php": "7.0.10"
-        },
+        "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
+    },
+    "repositories": {
+        "pharhub": {
+            "type": "composer",
+            "url": "https://packages.pharhub.dev/"
+        }
     },
     "require": {
         "php": "^7.0.10",
         "ext-pdo": "*",
         "ext-json": "*",
         "symfony/console": "^3.4"
+    },
+    "require-dev": {
+        "pharhub/phpunit": "^6.5"
     },
     "autoload": {
         "psr-4": {
@@ -36,13 +43,16 @@
     ],
     "scripts": {
         "test": [
-            "phpunit --colors=always"
+            "vendor/bin/phpunit.phar --colors=always"
         ],
         "coverage": [
-            "phpdbg -qrr $(which phpunit) --colors=always --coverage-text --coverage-html=build/"
+            "phpdbg -qrr vendor/bin/phpunit.phar --colors=always --coverage-text --coverage-html=build/"
         ],
         "cs": [
             "php-cs-fixer fix --diff --dry-run --ansi -v"
+        ],
+        "cs-fix": [
+            "php-cs-fixer fix --diff --ansi -v"
         ],
         "phan": [
             "phan --color -p"

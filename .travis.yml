@@ -29,12 +29,11 @@ before_install:
   - mysql -e 'CREATE DATABASE test'
 
 install:
-  - composer install
-  - composer require phpunit/phpunit --dev
+  - composer install --prefer-dist --no-progress --no-suggest
 
 script:
-  - vendor/bin/phpunit --version
-  - vendor/bin/phpunit --colors --coverage-text
+  - vendor/bin/phpunit.phar --version
+  - vendor/bin/phpunit.phar --colors --coverage-text
 
 before_deploy:
   - composer build
