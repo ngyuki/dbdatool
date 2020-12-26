@@ -26,6 +26,7 @@
         "symfony/console": "^3.4"
     },
     "require-dev": {
+        "pharhub/phan": "^1.3",
         "pharhub/phpunit": "^6.5"
     },
     "autoload": {
