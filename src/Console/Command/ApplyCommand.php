@@ -41,7 +41,7 @@ e.g.)
     # apply database to database (specified by config.php and dsn)
     $appName apply @ "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
 EOS
-);
+        );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
