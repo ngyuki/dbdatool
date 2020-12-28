@@ -58,7 +58,7 @@ jobs:
         with:
           dependency-versions: ${{ matrix.dependencies }}
 
-      - run: vendor/bin/phpunit.phar --colors --coverage-text
+      - run: vendor/bin/phpunit --colors --coverage-text
         env:
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}

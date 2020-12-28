@@ -33,8 +33,8 @@ install:
   - composer install --prefer-dist --no-progress --no-suggest
 
 script:
-  - vendor/bin/phpunit.phar --version
-  - vendor/bin/phpunit.phar --colors --coverage-text
+  - vendor/bin/phpunit --version
+  - vendor/bin/phpunit --colors --coverage-text
 
 before_deploy:
   - composer build
