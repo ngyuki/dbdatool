@@ -67,3 +67,11 @@ jobs:
           MYSQL_PASSWORD: pass
           MYSQL_DATABASE: test
           XDEBUG_MODE: coverage
+
+  cs:
+    runs-on: ubuntu-latest
+    container:
+      image: ngyuki/php-dev:7.4
+    steps:
+      - uses: actions/checkout@v2
+      - run: php-cs-fixer fix --diff --dry-run --ansi -v
