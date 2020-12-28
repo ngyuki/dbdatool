@@ -3,7 +3,7 @@ namespace ngyuki\DbdaTool\DataSource;
 
 use PDO;
 
-interface ConnectionSourceInterface
+interface ConnectionSourceInterface extends DataSourceInterface
 {
     /**
      * @return PDO

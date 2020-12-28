@@ -61,6 +61,7 @@ class DataSourceFactory
 
     public static function createByDsn(string $dsn)
     {
+        // @phan-suppress-next-line PhanSuspiciousBinaryAddLists
         list($driver, $param, $username, $password) = explode(':', $dsn, 4) + [null, null, null, null];
         return new ConnectionSource(self::createPdo("$driver:$param", $username, $password));
     }
