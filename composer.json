@@ -13,12 +13,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "repositories": {
-        "pharhub": {
-            "type": "composer",
-            "url": "https://packages.pharhub.dev/"
-        }
-    },
     "require": {
         "php": "^7.0.10",
         "ext-pdo": "*",
@@ -26,8 +20,7 @@
         "symfony/console": "^3.4"
     },
     "require-dev": {
-        "pharhub/phan": "^1.3",
-        "pharhub/phpunit": "^6.5"
+        "phpunit/phpunit": "^6.5"
     },
     "autoload": {
         "psr-4": {
@@ -44,10 +37,10 @@
     ],
     "scripts": {
         "test": [
-            "vendor/bin/phpunit.phar --colors=always"
+            "vendor/bin/phpunit --colors=always"
         ],
         "coverage": [
-            "phpdbg -qrr vendor/bin/phpunit.phar --colors=always --coverage-text --coverage-html=build/"
+            "phpdbg -qrr vendor/bin/phpunit --colors=always --coverage-text --coverage-html=build/"
         ],
         "cs": [
             "php-cs-fixer fix --diff --dry-run --ansi -v"
