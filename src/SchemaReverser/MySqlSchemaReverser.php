@@ -46,6 +46,7 @@ class MySqlSchemaReverser implements SchemaReverserInterface
             from information_schema.TABLES
             left join information_schema.COLLATION_CHARACTER_SET_APPLICABILITY on COLLATION_NAME = TABLE_COLLATION
             where TABLE_SCHEMA = database() and TABLE_TYPE = 'BASE TABLE'
+            order by TABLE_NAME asc
         ";
 
         $rows = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
