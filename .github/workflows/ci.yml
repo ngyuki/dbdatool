@@ -94,9 +94,9 @@ jobs:
           - "7.2"
           - "7.3"
           - "7.4"
-        composer-opt:
-          - --prefer-stable
-          - --prefer-lowest
+        dependencies:
+          - lowest
+          - highest
     container:
       image: ngyuki/php-dev:${{ matrix.php-version }}
     steps:
@@ -108,7 +108,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-${{ matrix.php-version }}-
             ${{ runner.os }}-php-
-      - run: composer update --prefer-dist --no-progress --no-suggest --ansi ${{ matrix.composer-opts }}
+      - run: composer update --prefer-dist --no-progress --no-suggest --ansi
+        if: ${{ matrix.dependencies != 'lowest' }}
+      - run: composer update --prefer-dist --no-progress --no-suggest --ansi --prefer-lowest
+        if: ${{ matrix.dependencies == 'lowest' }}
       - run: phan --color --no-progress-bar
         if: ${{ matrix.php-version != '7.0' }}
       - run: phan --color
