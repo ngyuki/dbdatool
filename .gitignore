@@ -2,7 +2,7 @@
 /composer.lock
 /phpunit.xml
 /build
-/.php_cs.cache
+/.php-cs-fixer.cache
 /.env
 /.envrc
 /dbdatool.phar
