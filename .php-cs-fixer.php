@@ -4,7 +4,7 @@ $finder = PhpCsFixer\Finder::create()
     ->path('src/')
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules(['@PSR2' => true])
     ->setFinder($finder)
 ;
