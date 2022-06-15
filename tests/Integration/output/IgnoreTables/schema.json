@@ -1,5 +1,39 @@
 {
     "tables": {
+        "t2": {
+            "columns": {
+                "id": {
+                    "default": null,
+                    "nullable": false,
+                    "type": "int"
+                },
+                "str": {
+                    "default": null,
+                    "nullable": true,
+                    "type": "text",
+                    "charset": "utf8",
+                    "collation": "utf8_general_ci"
+                }
+            },
+            "indexes": {
+                "PRIMARY": {
+                    "type": "PRIMARY",
+                    "columns": [
+                        "id"
+                    ],
+                    "comment": ""
+                }
+            },
+            "foreignKeys": [],
+            "checkConstraints": [],
+            "options": {
+                "engine": "InnoDB",
+                "row_format": "Dynamic",
+                "charset": "utf8",
+                "collation": "utf8_general_ci",
+                "comment": ""
+            }
+        },
         "tt": {
             "columns": {
                 "id": {
