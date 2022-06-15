@@ -1,0 +1,195 @@
+---
+
+CheckConstraint:
+  engine:
+    '>=': 8.0.16
+  asis:
+    - DROP TABLE IF EXISTS t1;
+    - DROP TABLE IF EXISTS t2;
+    - DROP TABLE IF EXISTS t3;
+    - CREATE TABLE t1
+      (
+        CHECK (c1 <> c2),
+        c1 INT CHECK (c1 > 10),
+        c2 INT CONSTRAINT c2_positive CHECK (c2 > 0),
+        c3 INT CHECK (c3 < 100),
+        CONSTRAINT c1_nonzero CHECK (c1 <> 0),
+        CHECK (c1 > c3) NOT ENFORCED
+      );
+    - CREATE TABLE t2
+      (
+        CHECK (c1 <> c2),
+        c1 INT CHECK (c1 > 10),
+        c2 INT
+      );
+  tobe:
+    - DROP TABLE IF EXISTS t1;
+    - DROP TABLE IF EXISTS t2;
+    - DROP TABLE IF EXISTS t3;
+    - CREATE TABLE t1
+      (
+        CHECK (c1 <> c2),
+        c1 INT CHECK (c1 > 10),
+        c2 INT CONSTRAINT c2x_positive CHECK (c2 > 0),
+        c3 INT CHECK (c3 < 200),
+        CONSTRAINT c1_nonzero CHECK (c1 <> 0) NOT ENFORCED,
+        CHECK (c1 > c3) NOT ENFORCED
+      );
+    - CREATE TABLE t3
+      (
+        CHECK (c1 <> c2),
+        c1 INT CHECK (c1 > 10),
+        c2 INT
+      );
+
+ColumnOther:
+  asis:
+    - DROP TABLE IF EXISTS t;
+    - CREATE TABLE t (
+        c1 INT NOT NULL,
+        c2 INT NOT NULL,
+        c3 INT NOT NULL
+      );
+  tobe:
+    - CREATE TABLE t (
+        c2 INT NOT NULL,
+        c3 INT NOT NULL,
+        c1 INT NOT NULL
+      );
+
+DefaultGenerated:
+  engine:
+    '>=': 8.0.0
+  tobe:
+    - CREATE TABLE t (
+        d1 DATETIME NOT NULL DEFAULT NOW(),
+        d2 DATETIME NOT NULL DEFAULT '2019-12-31 23:59:59'
+      );
+
+ForeignKeyOnlyChange:
+  asis:
+    - CREATE TABLE t1 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+    - CREATE TABLE t2 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+  tobe:
+    - CREATE TABLE t1 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+    - CREATE TABLE t2 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+    - ALTER TABLE t2 ADD CONSTRAINT fk FOREIGN KEY (id) REFERENCES t1 (id) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ForeignKeyReferenceOrder:
+  asis:
+    - CREATE TABLE t1 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+    - CREATE TABLE t2 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+    - ALTER TABLE t2 ADD CONSTRAINT fk FOREIGN KEY (id) REFERENCES t1 (id) ON DELETE NO ACTION;
+  tobe: []
+
+Generated:
+  engine:
+    '>=': 5.7.6
+  asis:
+    - CREATE TABLE t (
+        sidea DOUBLE,
+        sideb DOUBLE,
+        sidec DOUBLE AS (SQRT(sidea * sidea + sideb * sideb))
+      );
+  tobe:
+    - CREATE TABLE t (
+        sidea DOUBLE,
+        sideb DOUBLE,
+        sidec DOUBLE AS (sidea + sideb),
+        sided DOUBLE AS (sidea * sideb)
+      );
+
+IgnoreTables:
+  args:
+    - --ignore-tables
+    - ^t\d
+  asis:
+    - CREATE TABLE tt (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+    - CREATE TABLE t1 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+  tobe:
+    - CREATE TABLE tt (
+        id INT NOT NULL PRIMARY KEY,
+        str VARCHAR(100)
+      );
+    - CREATE TABLE t2 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+  expect:
+    - CREATE TABLE tt (
+        id INT NOT NULL PRIMARY KEY,
+        str VARCHAR(100)
+      );
+    - CREATE TABLE t1 (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+
+OnUpdateCurrentTimestamp:
+  engine:
+    '>=': 8.0.0
+  asis:
+    - DROP TABLE IF EXISTS t;
+  tobe:
+    - DROP TABLE IF EXISTS t;
+    - CREATE TABLE t (
+        id INT NOT NULL PRIMARY KEY,
+        val INT NOT NULL,
+        updated_at TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
+      );
+
+PrimaryKeyAndAutoIncrement:
+  asis:
+    - CREATE TABLE t (
+        id INT NOT NULL PRIMARY KEY,
+        str TEXT
+      );
+  tobe:
+    - DROP TABLE IF EXISTS t;
+    - CREATE TABLE t (
+        id1 INT NOT NULL AUTO_INCREMENT,
+        id2 INT NOT NULL,
+        str TEXT,
+        PRIMARY KEY (id1, id2)
+      );
+
+View:
+  asis:
+    - DROP VIEW IF EXISTS v1;
+    - DROP VIEW IF EXISTS v2;
+    - DROP VIEW IF EXISTS v3;
+    - CREATE OR REPLACE VIEW v1 as SELECT 1 as x;
+    - CREATE OR REPLACE VIEW v2 as SELECT 1 as x;
+  tobe:
+    - DROP VIEW IF EXISTS v1;
+    - DROP VIEW IF EXISTS v2;
+    - DROP VIEW IF EXISTS v3;
+    - CREATE OR REPLACE VIEW v2 as SELECT 2 as xx;
+    - CREATE OR REPLACE VIEW v3 as SELECT 2 as xx;
+
+
+

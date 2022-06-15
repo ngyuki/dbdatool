@@ -48,4 +48,9 @@ class TestEnv
         }
         return $this;
     }
+
+    public function exec($sql)
+    {
+        $this->pdo()->exec($sql);
+    }
 }
