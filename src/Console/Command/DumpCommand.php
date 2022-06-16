@@ -26,7 +26,7 @@ Display schema definition file
 e.g.)
     # dump schema file from database (specified by config.php)
     $appName dump -c config.php
-    
+
     # dump schema file from database (specified by dsn)
     $appName dump "mysql:host=192.0.2.123;port=3306;dbname=test;charset=utf8:user:password"
 EOS
@@ -47,5 +47,7 @@ EOS
             file_put_contents($filename, $dump);
             $output->writeln("Dump schema to '$filename'");
         }
+
+        return 0;
     }
 }
