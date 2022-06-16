@@ -8,11 +8,7 @@
   "finder": [
     {
       "in": [
-        "vendor/composer",
-        "vendor/psr/log",
-        "vendor/symfony/console",
-        "vendor/symfony/debug",
-        "vendor/symfony/polyfill-mbstring"
+        "vendor"
       ],
       "exclude": [
         "tests",
