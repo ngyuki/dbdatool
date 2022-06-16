@@ -13,6 +13,7 @@ class Schema implements \JsonSerializable
      */
     public $views = [];
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return (array)$this;

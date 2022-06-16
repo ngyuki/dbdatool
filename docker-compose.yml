@@ -1,6 +1,6 @@
 services:
   php:
-    image: ngyuki/php-dev:7.2
+    image: ngyuki/php-dev:${PHP_VERSION:-7.2}
     depends_on:
       - mysql
     volumes:

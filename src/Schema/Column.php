@@ -39,6 +39,7 @@ class Column extends \ArrayObject implements \JsonSerializable
         parent::__construct($input, self::ARRAY_AS_PROPS);
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         $optionals = [

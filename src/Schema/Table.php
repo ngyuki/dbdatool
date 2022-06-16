@@ -25,6 +25,7 @@ class Table extends \ArrayObject implements \JsonSerializable
         parent::__construct($input, self::ARRAY_AS_PROPS);
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return array_diff_key($this->getArrayCopy(), ['name' => '']);

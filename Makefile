@@ -2,7 +2,6 @@
 all:
 	docker compose run --rm php composer qa
 
-
 test: vendor/autoload.php
 	docker compose run --rm php composer test
 
@@ -17,3 +16,11 @@ build:
 
 sign:
 	gpg --detach-sign --armor --interactive dbdatool.phar
+
+all-versions-test:
+	env PHP_VERSION=7.2 docker-compose run --rm php composer update
+	env PHP_VERSION=7.2 docker-compose run --rm php composer test
+	env PHP_VERSION=7.3 docker-compose run --rm php composer test
+	env PHP_VERSION=7.4 docker-compose run --rm php composer test
+	env PHP_VERSION=8.0 docker-compose run --rm php composer test
+	env PHP_VERSION=8.1 docker-compose run --rm php composer test
