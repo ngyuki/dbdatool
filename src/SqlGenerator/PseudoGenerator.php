@@ -135,7 +135,7 @@ class PseudoGenerator
         }
 
         return sprintf(
-        /** @lang text */
+            /** @lang text */
             "CREATE TABLE %s (%s) %s",
             $this->quote($table->name),
             "\n  " . implode(",\n  ", $columnsSql) . "\n",
@@ -235,7 +235,7 @@ class PseudoGenerator
     public function addForeignKey(ForeignKey $foreignKey): string
     {
         return sprintf(
-        /** @lang text */
+            /** @lang text */
             "ADD CONSTRAINT %s FOREIGN KEY (%s) references %s (%s) on update %s on delete %s",
             $this->quote($foreignKey->name),
             $this->quoteJoin($foreignKey->columns),
