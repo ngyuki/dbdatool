@@ -123,7 +123,7 @@ jobs:
       - run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-dev
       - run: composer build
       - run: php dbdatool.phar --version
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dbdatool.phar
           path: dbdatool.phar
